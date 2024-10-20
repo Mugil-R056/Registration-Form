@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <style>
+        .nameError,.emailError,.passwordError{
+            color: red;
+            display: none;
+        }
+    </style>
+    
+    <div>
+        <form>
+            <input type="text" placeholder="Name" id="name">
+            <span class="nameError">Name must contains only letter</span>
+            <br>
+            <input type="text" placeholder="Email" id="email"> 
+            <span class="emailError">Please Provide valid Gmail Address</span>
+            <br>
+            <input type="text" placeholder="Password" id="password">
+            <span class="passwordError">Password must be at least 6 characters long</span>
+            <br>
+            <input type="submit" id="submit">
+        </form>
+    </div>
+    
+    <script>
+        var submit = document.getElementById("submit")
+        submit.addEventListener("click",function(){
+         event.preventDefault()
+         
+         var nameRegex = /^[a-zA-Z]+$/
+         var emailRegex = /^[a-zA-Z0-9]+@gmail\.com/
+         var passwordRegex = /^[a-zA-Z0-9]$/
+    
+         var name = document.getElementById("name")
+         var password = document.getElementById("password")
+         var email = document.getElementById("email")
+    
+        var Validate = true
+         if(nameRegex.test(name.value) == false)
+         {
+            document.querySelector(".nameError").style.display="inline"        
+            Validate = false
+         }
+         else{
+            document.querySelector(".nameError").style.display="none"
+         }
+    
+         if(passwordRegex.test(password.value) == false)
+         {
+            document.querySelector(".passwordError").style.display="inline"        
+            Validate = false
+         }
+         else{
+            document.querySelector(".passwordError").style.display="none"
+         }
+    
+         if(emailRegex.test(email.value) == false)
+         {
+            document.querySelector(".emailError").style.display="inline"        
+            Validate = false
+         }
+         else{
+            document.querySelector(".emailError").style.display="none"
+         }
+    
+         // Enable or disable the submit button
+         submit.disabled = !Validate;
+    
+        })
+    
+        
+    </script>
+</body>
+</html>
